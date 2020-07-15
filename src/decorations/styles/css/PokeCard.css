@@ -1,0 +1,77 @@
+.poke-card{
+    max-height: 400px;
+    background: #fff;
+    margin: 30px 15px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #777;
+    -webkit-box-shadow: 2px 2px 5px #777;
+    -moz-box-shadow: 2px 2px 5px #777;
+    position: relative;
+    overflow: hidden;
+}
+.poke-card:hover img{
+    transform: scale(1.05);
+}
+.poke-card .poke-image{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.poke-card .poke-image img{
+    height: 100%;
+    transition: 500ms;
+    z-index: 5;
+}
+.poke-card .circle-1{
+    position: absolute;
+    top: -50px;
+    right: -60px;
+    color: #f3f3f3;
+    font-size: 235px;
+    z-index: 1;
+}
+.poke-card .circle-2{
+    position: absolute;
+    top: 100px;
+    left: -100px;
+    color: #f3f3f3;
+    font-size: 135px;
+    z-index: 1;
+
+}
+.poke-card h3{
+    font-weight: 300;
+    color: #777;
+}
+.poke-card .poke-name{
+    font-size: 25px;
+    text-align: center;
+    margin: 0 auto;
+}
+.poke-card .poke-name{
+    text-transform: uppercase;
+    margin-top: 10px;
+    position: relative;
+}
+.poke-card .poke-name::after{
+    content: "";
+    position: absolute;
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+    height: 6px;
+    width: 35px;
+    top: 50%;
+    right: 0;
+}
+.poke-card .poke-name::before{
+    content: "";
+    position: absolute;
+    border-top: 1.3px solid #777;
+    border-bottom: 1.3px solid #777;
+    height: 6px;
+    width: 35px;
+    top: 50%;
+    left: 0;
+}
