@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import PokemonCard from './PokemonCard'
 import Pagination from '../Layouts/Pagination';
+import Footer from '../Layouts/Footer';
 
 function PokemonList() {
     const [pokemon, SetPokemon] = useState([]);
@@ -9,8 +10,15 @@ function PokemonList() {
     const [prevUrl, SetPrevUrl] = useState();
     const [nextUrl, setNextUrl] = useState();
     const [loading, SetLoading] = useState(true);
-    const [error, setError] = useState();
+    const pagenationStyle = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "20px 0"
+    }
 
+    
+    //Data fetching from Poke API
     useEffect(() => {
         let cancel;
         SetLoading(false);
@@ -23,39 +31,35 @@ function PokemonList() {
 
             return () => cancel()
         })
-        .catch(error => {
-            setError(error.message);
-        })
     }, [curUrl]);
 
-    function goToPreviousPage(){setCurUrl(prevUrl)}
-    function goToNextPage(){
-        setCurUrl(nextUrl);
-        console.log(curUrl);
-    }
     
-    if (loading ){
-        return (<div>Loading...</div>)
-    }
-    else{
-        return (
-            <React.Fragment>
-                <div className="container">
-                    <div className="row">
-                        {pokemon.map(poke => (
-                            <PokemonCard key={poke.name} name={poke.name} url={poke.url}/>
-                        ))}
-                    </div>
-                    <div className="row">
+    //Manage current page
+    function goToPreviousPage(){setCurUrl(prevUrl)}
+    function goToNextPage(){ setCurUrl(nextUrl); }
+    
+    
+    if (loading ){ return (<div>Loading...</div>) }
+    return (
+        <React.Fragment>
+            <div className="container">
+                <div className="row">
+                    {pokemon.map(poke => (
+                        <PokemonCard key={poke.name} name={poke.name} url={poke.url}/>
+                    ))}
+                </div>
+                <div className="row">
+                    <div className="col" style={pagenationStyle}>
                         <Pagination 
                             next={ nextUrl? goToNextPage : null}
                             previous={ prevUrl? goToPreviousPage : null}
                         />
                     </div>
                 </div>
-            </React.Fragment>
-        )
-    }
+            </div>
+            <Footer />
+        </React.Fragment>
+    )
 }
 
 export default PokemonList

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {padToThree} from '../../decorations/styles/js/TextDecor';
+import {padToThree, CapitalFirst} from '../../decorations/styles/js/TextDecor';
 import '../../decorations/styles/css/PokeCard.css';
 
 
@@ -13,17 +13,19 @@ function PokemonCard(props) {
     return (
         <Link 
             to={"/details/" + name}
-            className= 'col-md-4'
+            className= 'col-sm-6 col-md-3'
             style={{textDecoration: 'none', color: '#000'}}
         >
             <div className="poke-card">
                 <i className="fas fa-circle circle-1"></i>
                 <i className="fas fa-circle circle-2"></i>
                 <h3>#{padToThree(id)}</h3>
-                <div className="poke-image"><img src={imgLink} alt={name} /></div>
-                <h2 className="poke-name">{name}</h2>
+                <div className="poke-image">
+                    <img src={imgLink} alt={name} />
+                </div>
+                <h2 className="poke-name">{CapitalFirst(name)}</h2>
             </div>
-            </Link>
+        </Link>
     )
 }
 
