@@ -1,0 +1,53 @@
+.container-fluid{ height: 89vh;}
+
+/* POKEMON IMAGE BLOCK */
+.pokemon-details, .basic{
+    height: inherit;
+    padding: 0;
+}
+.pokemon-image-block{
+    padding: 0 0 40px 40px;
+    height: inherit;
+    position: relative;
+}
+.pokemon-image-block .color-box{
+    width: 65%;
+    height: 98%;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    background-image: linear-gradient(to right, #5DA491 0%, #46D1B2 100%);
+    border-radius: 0 50px 0 50px;
+}
+.pokemon-image-block .color-box .heading{
+    color: #fff;
+    padding: 30px 20px;
+}
+.pokemon-image-block .color-box .heading h1{
+    font-size: 45px;
+    font-weight: 500;
+}
+.pokemon-image-block .color-box .heading .type a{
+    background: rgba(70, 209, 178, 0.5);
+    padding: 3px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 10px;
+}
+.pokemon-image-block .image-box{
+    width: 65%;
+    height: 65%;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-65%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pokemon-image-block .image-box img{
+    height: 100%;
+    filter: drop-shadow(0 8px 8px #777);
+}

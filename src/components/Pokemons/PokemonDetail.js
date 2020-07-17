@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { padToThree ,CapitalFirst } from '../../decorations/styles/js/TextDecor';
+import '../../decorations/styles/css/PokeDetail.css';
+import PokemonImageBlock from './PokemonImageBlock';
 
 function PokemonDetail(props) {
     const POKE_ID = props.match.params.id;
     const POKE_API = `https://pokeapi.co/api/v2/pokemon/${POKE_ID}`;
     const POKE_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/${POKE_ID}/`;
     const POKE_MOVES = `https://pokeapi.co/api/v2/move/${POKE_ID}/`
-    const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(POKE_ID)}`;
+    const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(POKE_ID)}.png`;
 
     //Use two variables for basic and detail information
     const [pokemon, setPokemon] = useState({});
@@ -22,7 +24,7 @@ function PokemonDetail(props) {
     }, []);
 
     //Informations
-    const name = pokemon.name;
+    const name = CapitalFirst(pokemon.name + "");
     const height = Math.round((pokemon.height * 0.328084 + 0.0001) * 100) / 100 + "ft (" + pokemon.height/100 + "m)";
     const weight = Math.round((pokemon.weight * 0.220462 + 0.0001) * 100) / 100 + "lbs (" + pokemon.weight/10 + "kg)";
     const abilities = pokemon.abilities && pokemon.abilities.map(a => {return CapitalFirst(a.ability.name)}).join(', ');
@@ -48,8 +50,17 @@ function PokemonDetail(props) {
         stats[s.stat.name] = s.base_stat;
     })
 
+
     return (
-        <div>
+        <div className="container-fluid">
+            <div className="row pokemon-details">
+                <div className="col-md-6 basic">
+                    <PokemonImageBlock name = {name} types = {types} imageUrl = {POKE_IMAGE} />
+                </div>
+                <div className="col-md-6">
+
+                </div>
+            </div>
         </div>
     )
 }
