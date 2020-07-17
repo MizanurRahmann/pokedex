@@ -3,6 +3,9 @@ import axios from 'axios';
 import { padToThree ,CapitalFirst } from '../../decorations/styles/js/TextDecor';
 import '../../decorations/styles/css/PokeDetail.css';
 import PokemonImageBlock from './PokemonImageBlock';
+import PokemonAbout from './PokemonAbout';
+import PokemonStats from './PokemonStats';
+import PokemonMoves from './PokemonMoves';
 
 function PokemonDetail(props) {
     const POKE_ID = props.match.params.id;
@@ -15,6 +18,7 @@ function PokemonDetail(props) {
     const [pokemon, setPokemon] = useState({});
     const [species, setSpecies] = useState({});
     const [moves, setMoves] = useState({});
+    const [view, setView] = useState('About');
 
     //Get the data from API
     useEffect(() => {
@@ -50,6 +54,10 @@ function PokemonDetail(props) {
         stats[s.stat.name] = s.base_stat;
     })
 
+    //To change the information details
+    const viewHnadler = (e) => {
+        setView(e.target.innerHTML);
+    }
 
     return (
         <div className="container-fluid">
@@ -58,7 +66,22 @@ function PokemonDetail(props) {
                     <PokemonImageBlock name = {name} types = {types} imageUrl = {POKE_IMAGE} />
                 </div>
                 <div className="col-md-6">
+                    <div className="pokemon-info-block">
+                        <div className="info-nav">
+                            <div id="marker"></div>
+                            <p onClick={e => viewHnadler(e)}>About</p>
+                            <p onClick={e => viewHnadler(e)}>Stats</p>
+                            <p onClick={e => viewHnadler(e)}>Battle</p>
+                        </div>
+                        {
+                            view == 'About'
+                            ? <PokemonAbout />
+                            : view == 'Stats'
+                                ? <PokemonStats />
+                                : <PokemonMoves />
 
+                        }
+                    </div>
                 </div>
             </div>
         </div>
