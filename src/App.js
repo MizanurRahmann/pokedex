@@ -1,9 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import PokemonList from './components/Pokemons/PokemonList';
-import Default from './components/Layouts/Default';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PokemonList from './components/Pokemons/PokemonList';
+import PokeDetail from './components/Pokemons/PokemonDetail'
+import Default from './components/Layouts/Default';
 import Navbar from './components/Layouts/Navbar';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Navbar />
       <Switch>
         <Route exact path="/" component={ PokemonList }/>
+        <Route path="/details/:id" component={ PokeDetail }/>
         <Route component={ Default}/>
       </Switch>
     </React.Fragment>
