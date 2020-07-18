@@ -6,7 +6,7 @@ function PokemonMoves(props) {
     const power = props.power ? props.power : "Null";
     const pp = props.pp ? props.pp : "Null";
     const iconDesign = {
-        color: "#46D1B2"
+        color: props.sColor
     }
 
 

@@ -4,13 +4,9 @@ function PokemonAbout(props) {
     return (
         <div>
             <div className="description">
-                <span><i className="fas fa-fingerprint"></i></span>
+                <span><i className="fas fa-fingerprint" style={{color: props.sColor}}></i></span>
                 {props.description}
             </div>
-            {/* <div className="info">
-                <div className="info-title"> Species </div>
-                <div className="info-value"> Seed </div>
-            </div> */}
             <div className="info">
                 <div className="info-title"> Color :</div>
                 <div className="info-value"> {props.color} </div>
@@ -28,7 +24,7 @@ function PokemonAbout(props) {
                 <div className="info-value"> {props.abilities} </div>
             </div>
 
-            <h3 style={{marginTop: "35px", fontSize: "25px"}}>Breeding</h3>
+            <h3 style={{marginTop: "35px", fontSize: "20px"}}>Breeding</h3>
             <div className="info">
                 <div className="info-title"> Gender :</div>
                 <div className="info-value">

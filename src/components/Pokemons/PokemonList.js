@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import PokemonCard from './PokemonCard'
 import Pagination from '../Layouts/Pagination';
-import Footer from '../Layouts/Footer';
 
 function PokemonList() {
     const [pokemon, SetPokemon] = useState([]);
@@ -57,7 +56,6 @@ function PokemonList() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </React.Fragment>
     )
 }
