@@ -27,14 +27,14 @@
     font-size: 45px;
     font-weight: 500;
 }
-.pokemon-image-block .color-box .heading .type a{
+.pokemon-image-block .color-box .heading .type p{
+    display: inline;
     background: rgba(70, 209, 178, 0.5);
-    padding: 3px 10px;
+    padding: 5px 15px;
     margin-right: 5px;
-    text-decoration: none;
     color: #fff;
     border-radius: 20px;
-    font-size: 10px;
+    font-size: 16px;
 }
 .pokemon-image-block .image-box{
     width: 65%;
@@ -64,6 +64,7 @@
     margin: 0 10px;
     font-size: 20px;
     text-transform: uppercase;
+    cursor: pointer;
     font-family: 'Roboto', sans-serif;
 
 }
@@ -72,9 +73,50 @@
     left: 0;
     bottom: -9px;
     height: 4px;
-    width: 0;
+    width: 80px;
     background: #46D1B2;
     transition: 0.5s;
     border-radius: 4px;
     z-index: 2;
+}
+
+/* info part */
+.info{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.info-title{
+    flex-basis: 30%;
+    font-size: 18px;
+    line-height: 26px;
+    color: #777;
+    font-weight: 300;
+}
+.info-value{
+    flex-basis: 70%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+}
+.info-value .male{
+    color: blue;
+    font-size: 26px;
+}
+.info-value .female{
+    color: palevioletred;
+    font-size: 26px;
+}
+
+/* pokemon description (about)*/
+.description{
+    margin-bottom: 40px;
+    background: #fff;
+    font-size: 16px;
+}
+.description span{
+    color: #46D1B2;
+    font-size: 20px;
+    margin-right: 10px;
 }

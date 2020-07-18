@@ -7,8 +7,9 @@ function PokemonImageBlock(props) {
                     <div className="heading">
                         <h1>{props.name}</h1>
                         <div class="type">
-                            <a href="/">grass</a>
-                            <a href="/">poison</a>
+                            { props.types && props.types.map(type => {
+                                return <p key={type}>{type}</p>})
+                            }
                         </div>
                     </div>
                 </div>

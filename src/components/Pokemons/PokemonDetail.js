@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { padToThree ,CapitalFirst } from '../../decorations/styles/js/TextDecor';
-import '../../decorations/styles/css/PokeDetail.css';
 import PokemonImageBlock from './PokemonImageBlock';
 import PokemonAbout from './PokemonAbout';
 import PokemonStats from './PokemonStats';
 import PokemonMoves from './PokemonMoves';
+import '../../decorations/styles/css/PokeDetail.css';
+import { padToThree ,CapitalFirst } from '../../decorations/styles/js/TextDecor';
+
 
 function PokemonDetail(props) {
     const POKE_ID = props.match.params.id;
@@ -45,27 +46,35 @@ function PokemonDetail(props) {
     let stats = {};
 
     species.flavor_text_entries && species.flavor_text_entries.some(f => {
-        if (f.language.name == 'en'){
+        if (f.language.name === 'en'){
             description = f.flavor_text;
             return;
         }
     });
     pokemon.stats && pokemon.stats.map(s => {
         stats[s.stat.name] = s.base_stat;
+        return null;
     })
 
     //To change the information details
     const viewHnadler = (e) => {
         setView(e.target.innerHTML);
+        const marker = document.querySelector("#marker");
+        marker.style.left = e.target.offsetLeft + "px";
+        marker.style.width = e.target.offsetWidth + "px";
     }
 
     return (
         <div className="container-fluid">
             <div className="row pokemon-details">
-                <div className="col-md-6 basic">
-                    <PokemonImageBlock name = {name} types = {types} imageUrl = {POKE_IMAGE} />
+                <div className="col-lg-6 basic">
+                    <PokemonImageBlock 
+                        name = {name}
+                        types = {types}
+                        imageUrl = {POKE_IMAGE} /
+                    >
                 </div>
-                <div className="col-md-6">
+                <div className="col-lg-6">
                     <div className="pokemon-info-block">
                         <div className="info-nav">
                             <div id="marker"></div>
@@ -74,10 +83,20 @@ function PokemonDetail(props) {
                             <p onClick={e => viewHnadler(e)}>Battle</p>
                         </div>
                         {
-                            view == 'About'
-                            ? <PokemonAbout />
-                            : view == 'Stats'
-                                ? <PokemonStats />
+                            view === 'About'
+                            ? <PokemonAbout
+                                description = {description}
+                                height = {height}
+                                weight = {weight}
+                                color = {CapitalFirst(color+"")}
+                                abilities = {abilities}
+                                genderRate = {genderRate}
+                                eggGroup = {eggGroup}
+                             />
+                            : view === 'Stats'
+                                ? <PokemonStats 
+                                    stats = {stats}
+                                />
                                 : <PokemonMoves />
 
                         }
