@@ -5,20 +5,22 @@ import PokemonAbout from './PokemonAbout';
 import PokemonStats from './PokemonStats';
 import PokemonMoves from './PokemonMoves';
 import '../../decorations/styles/css/PokeDetail.css';
-import { padToThree ,CapitalFirst } from '../../decorations/styles/js/TextDecor';
+import { padToThree ,CapitalFirst, RemoveDash } from '../../decorations/styles/js/TextDecor';
 
 
 function PokemonDetail(props) {
     const POKE_ID = props.match.params.id;
     const POKE_API = `https://pokeapi.co/api/v2/pokemon/${POKE_ID}`;
     const POKE_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/${POKE_ID}/`;
-    const POKE_MOVES = `https://pokeapi.co/api/v2/move/${POKE_ID}/`
+    const POKE_MOVES = `https://pokeapi.co/api/v2/move/${POKE_ID}/`;
+    const POKE_ENCOUNTER = `https://pokeapi.co/api/v2/encounter-method/${POKE_ID}/`;
     const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(POKE_ID)}.png`;
 
     //Use two variables for basic and detail information
     const [pokemon, setPokemon] = useState({});
     const [species, setSpecies] = useState({});
     const [moves, setMoves] = useState({});
+    const [encounter, setEncounter] = useState({});
     const [view, setView] = useState('About');
 
     //Get the data from API
@@ -26,8 +28,10 @@ function PokemonDetail(props) {
         axios.get(POKE_API).then(resource => {setPokemon(resource.data)});
         axios.get(POKE_SPECIES).then(resource => {setSpecies(resource.data)});
         axios.get(POKE_MOVES).then(resources => {setMoves(resources.data)});
+        axios.get(POKE_ENCOUNTER).then(resource => {setEncounter(resource.data)});
     }, []);
 
+    console.log(encounter)
     //Informations
     const name = CapitalFirst(pokemon.name + "");
     const height = Math.round((pokemon.height * 0.328084 + 0.0001) * 100) / 100 + "ft (" + pokemon.height/100 + "m)";
@@ -44,6 +48,8 @@ function PokemonDetail(props) {
     const target = moves.target && moves.target.name;
     let description = '';
     let stats = {};
+    let encounterName = CapitalFirst(encounter.name + "");
+    let encounterDes = ''
 
     species.flavor_text_entries && species.flavor_text_entries.some(f => {
         if (f.language.name === 'en'){
@@ -51,6 +57,13 @@ function PokemonDetail(props) {
             return;
         }
     });
+
+    encounter.names && encounter.names.some(enc => {
+        if(enc.language.name === 'en'){
+            encounterDes = enc.name;
+        }
+    })
+
     pokemon.stats && pokemon.stats.map(s => {
         stats[s.stat.name] = s.base_stat;
         return null;
@@ -74,7 +87,7 @@ function PokemonDetail(props) {
                         imageUrl = {POKE_IMAGE} /
                     >
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 more">
                     <div className="pokemon-info-block">
                         <div className="info-nav">
                             <div id="marker"></div>
@@ -97,7 +110,15 @@ function PokemonDetail(props) {
                                 ? <PokemonStats 
                                     stats = {stats}
                                 />
-                                : <PokemonMoves />
+                                : <PokemonMoves
+                                    accuracy = {accuracy}
+                                    type = {CapitalFirst(type)}
+                                    pp = {pp}
+                                    power = {power}
+                                    target = {RemoveDash(target)}
+                                    encounterName = {encounterName}
+                                    encounterDes = {encounterDes}
+                                />
 
                         }
                     </div>

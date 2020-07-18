@@ -7,3 +7,8 @@ export const padToThree = (num) => {
 export const CapitalFirst = (name) => {
     return name.charAt(0).toUpperCase() + name.slice(1)
 }
+
+//Remove dash
+export const RemoveDash = (string) => {
+    return CapitalFirst(string.split("-").join(" "));
+}
