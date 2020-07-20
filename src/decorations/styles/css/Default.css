@@ -1,0 +1,36 @@
+.page-not-found{ height: 100vh; }
+.fourOfour{ height: 50%; display: flex; justify-content: center; align-items: flex-end; }
+.fourOfour .middle{flex-basis: 50%; display: flex; align-items: center; justify-content: center;}
+.fourOfour .middle h1{ font-size: 250px; font-weight: bold; color: #777}
+.fourOfour .middle img{width: 300px;}
+.page-not-found .line{ height: 1px; background: #f3f3f3; width: 80%; margin: auto; }
+
+.fourOfour-message{
+    height: 30%; 
+    margin-top: 20px;
+    display: flex; 
+    justify-content: center;
+}
+.fourOfour-message .message{flex-basis: 70%; text-align: center;}
+.fourOfour-message .message p{ font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 18px; }
+.fourOfour-message .message p span{color: red;}
+ 
+.fourOfour-message .message button{
+    padding: 10px 36px;
+    font-size: 16px;
+    color: #333;
+    background: #f3f3f3;
+    border: none;
+    border-radius: 36px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    outline: none;
+}
+.fourOfour-message .message button:hover{ box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3) }
+
+@media only screen and (max-width: 480px) {
+    .fourOfour, .fourOfour-message{ height: 40%; }
+    .fourOfour .middle h1{ font-size: 100px;}
+    .fourOfour .middle img{width: 100px;}
+    .fourOfour-message .message p{font-size: 14px;}
+    .fourOfour-message .message button{ font-size: 14px; padding: 5px 18px; } 
+}
