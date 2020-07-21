@@ -12,7 +12,7 @@ function PokemonCard(props) {
 
     return (
         <Link 
-            to={"/details/" + id}
+            to={"/details/" + name}
             className= 'col-sm-6 col-md-3'
             style={{textDecoration: 'none', color: '#000'}}
         >

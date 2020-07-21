@@ -10,12 +10,11 @@ import { ColorPicker } from '../../decorations/styles/js/ColorPicker';
 
 
 function PokemonDetail(props) {
-    const POKE_ID = props.match.params.id;
-    const POKE_API = `https://pokeapi.co/api/v2/pokemon/${POKE_ID}`;
-    const POKE_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/${POKE_ID}/`;
-    const POKE_MOVES = `https://pokeapi.co/api/v2/move/${POKE_ID}/`;
-    const POKE_ENCOUNTER = `https://pokeapi.co/api/v2/encounter-method/${POKE_ID}/`;
-    const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(POKE_ID)}.png`;
+    const POKE_NAME = props.match.params.name;
+    const POKE_API = `https://pokeapi.co/api/v2/pokemon/${POKE_NAME}`;
+    const POKE_SPECIES = `https://pokeapi.co/api/v2/pokemon-species/`;
+    const POKE_MOVES = `https://pokeapi.co/api/v2/move/`;
+    const POKE_ENCOUNTER = `https://pokeapi.co/api/v2/encounter-method/`;
 
     //Use two variables for basic and detail information
     const [pokemon, setPokemon] = useState({});
@@ -26,13 +25,16 @@ function PokemonDetail(props) {
 
     //Get the data from API
     useEffect(() => {
-        axios.get(POKE_API).then(resource => {setPokemon(resource.data)});
-        axios.get(POKE_SPECIES).then(resource => {setSpecies(resource.data)});
-        axios.get(POKE_MOVES).then(resources => {setMoves(resources.data)});
-        axios.get(POKE_ENCOUNTER).then(resource => {setEncounter(resource.data)});
+        axios.get(POKE_API)
+        .then(resource => {
+            setPokemon(resource.data);
+            axios.get(`${POKE_SPECIES}${resource.data.id}`).then(resource => {setSpecies(resource.data)});
+            axios.get(`${POKE_MOVES}${resource.data.id}`).then(resources => {setMoves(resources.data)});
+            axios.get(`${POKE_ENCOUNTER}${resource.data.id}`).then(resource => {setEncounter(resource.data)});
+        });
     }, []);
-
     //Informations
+    const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokemon.id)}.png`;
     const name = CapitalFirst(pokemon.name + "");
     const height = Math.round((pokemon.height * 0.328084 + 0.0001) * 100) / 100 + "ft (" + pokemon.height/100 + "m)";
     const weight = Math.round((pokemon.weight * 0.220462 + 0.0001) * 100) / 100 + "lbs (" + pokemon.weight/10 + "kg)";

@@ -14,7 +14,7 @@ function App() {
         <Navbar />
       <Switch>
         <Route exact path="/" component={ PokemonList }/>
-        <Route path="/details/:id" component={ PokeDetail }/>
+        <Route path="/details/:name" component={ PokeDetail }/>
         <Route component={ Default}/>
       </Switch>
     </React.Fragment>
