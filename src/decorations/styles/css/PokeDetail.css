@@ -59,7 +59,7 @@
 }
 .info-nav p{
     position: relative;
-    margin: 0 10px;
+    margin: 0 20px;
     font-size: 20px;
     text-transform: uppercase;
     cursor: pointer;
@@ -68,7 +68,7 @@
 }
 .info-nav #marker{
     position: absolute;
-    left: 0;
+    left: 10px;
     bottom: -9px;
     height: 4px;
     width: 80px;
@@ -179,8 +179,9 @@
     .pokemon-info-block{ padding: 10px;}
     .pokemon-info-block .description{font-size: 16px;}
     .info-nav{ margin-bottom: 30px; }
-    .info-nav a{ font-size: 16px;}
+    .info-nav p{ font-size: 18px; margin: 10px;}
     .info .info-title, .info-value{font-size: 15px;}
+    .info-nav #marker{width: 50px;}
     #stats{margin-top: 40px;}
     #stats .info{margin-bottom: 10px;}
     #stats .info-value .progressbar{height: 5px; flex-basis: 80%;}
