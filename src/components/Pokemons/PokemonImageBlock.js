@@ -10,7 +10,7 @@ function PokemonImageBlock(props) {
                 <div className="color-box" style={BoxColor}>
                     <div className="heading">
                         <h1>{props.name}</h1>
-                        <div class="type">
+                        <div className="type">
                             { props.types && props.types.map(type => {
                                 return <p style={linkColor} key={type}>{type}</p>})
                             }

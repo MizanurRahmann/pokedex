@@ -20,6 +20,9 @@ input{
     color: #fff;
     padding: 7px 14px;
 }
+.line-1, .line-2, .line-3{ height: 3px; margin: 5px; background-color: #000;}
+.line-1, .line-2{width: 23px;}
+.line-3{ width: 15px; margin-right: auto;}
 
 @media only screen and (max-width: 480px) {
     form{ width: 100%; margin: 20px 0; }

@@ -4,6 +4,7 @@ import PokemonImageBlock from './PokemonImageBlock';
 import PokemonAbout from './PokemonAbout';
 import PokemonStats from './PokemonStats';
 import PokemonMoves from './PokemonMoves';
+import Default from '../Layouts/Default';
 import '../../decorations/styles/css/PokeDetail.css';
 import { padToThree ,CapitalFirst, RemoveDash } from '../../decorations/styles/js/TextDecor';
 import { ColorPicker } from '../../decorations/styles/js/ColorPicker';
@@ -32,7 +33,7 @@ function PokemonDetail(props) {
             axios.get(`${POKE_MOVES}${resource.data.id}`).then(resources => {setMoves(resources.data)});
             axios.get(`${POKE_ENCOUNTER}${resource.data.id}`).then(resource => {setEncounter(resource.data)});
         });
-    }, []);
+    }, [POKE_NAME]);
     //Informations
     const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokemon.id)}.png`;
     const name = CapitalFirst(pokemon.name + "");
@@ -82,7 +83,8 @@ function PokemonDetail(props) {
     }
 
     return (
-        <div className="container-fluid">
+        pokemon.id
+        ? (<div className="container-fluid">
             <div className="row pokemon-details">
                 <div className="col-lg-6 basic">
                     <PokemonImageBlock 
@@ -134,7 +136,9 @@ function PokemonDetail(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>)
+        : 
+        <Default />
     )
 }
 
