@@ -9,7 +9,6 @@ function PokemonStats(props) {
     //progressbar animation
     function prgressAnimation(){
         const progressStep = document.getElementsByClassName('progress-step');
-        const totalStep = document.querySelector('.total')
         setInterval(() => {
             for(let i=0; i<statValues.length; i++)
                 if(progressStep[i]){
