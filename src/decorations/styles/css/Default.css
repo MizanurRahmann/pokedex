@@ -15,17 +15,17 @@
 .fourOfour-message .message p{ font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 18px; }
 .fourOfour-message .message p span{color: red;}
  
-.fourOfour-message .message button{
+.fourOfour-message .message a{
     padding: 10px 36px;
+    text-decoration: none;
     font-size: 16px;
     color: #333;
     background: #f3f3f3;
     border: none;
     border-radius: 36px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    outline: none;
 }
-.fourOfour-message .message button:hover{ box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3) }
+.fourOfour-message .message a:hover{ box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3) }
 
 @media only screen and (max-width: 480px) {
     .fourOfour, .fourOfour-message{ height: 40%; }

@@ -18,7 +18,7 @@ function Default() {
                         Unfortunately something went wrong. Please double check the url or go back to the
                     <span>landing page</span>. If you continue get this error - please email me at mr926560@gmial.com
                 </p>
-                    <button>Go Back</button>
+                    <a href="/">Go Back</a>
                 </div>
             </div>
         </div>

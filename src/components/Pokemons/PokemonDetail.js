@@ -32,7 +32,10 @@ function PokemonDetail(props) {
             axios.get(`${POKE_SPECIES}${resource.data.id}`).then(resource => {setSpecies(resource.data)});
             axios.get(`${POKE_MOVES}${resource.data.id}`).then(resources => {setMoves(resources.data)});
             axios.get(`${POKE_ENCOUNTER}${resource.data.id}`).then(resource => {setEncounter(resource.data)});
-        });
+        })
+        .catch(error => {
+            setPokemon({id: null});
+        })
     }, [POKE_NAME]);
     //Informations
     const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokemon.id)}.png`;
@@ -81,7 +84,6 @@ function PokemonDetail(props) {
         marker.style.left = e.target.offsetLeft + "px";
         marker.style.width = e.target.offsetWidth + "px";
     }
-
     return (
         pokemon.id
         ? (<div className="container-fluid">
