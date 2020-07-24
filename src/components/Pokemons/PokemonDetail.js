@@ -5,6 +5,7 @@ import PokemonAbout from './PokemonAbout';
 import PokemonStats from './PokemonStats';
 import PokemonMoves from './PokemonMoves';
 import Default from '../Layouts/Default';
+import Loading from '../Layouts/Loading';
 import '../../decorations/styles/css/PokeDetail.css';
 import { padToThree ,CapitalFirst, RemoveDash } from '../../decorations/styles/js/TextDecor';
 import { ColorPicker } from '../../decorations/styles/js/ColorPicker';
@@ -17,18 +18,22 @@ function PokemonDetail(props) {
     const POKE_MOVES = `https://pokeapi.co/api/v2/move/`;
     const POKE_ENCOUNTER = `https://pokeapi.co/api/v2/encounter-method/`;
 
-    //Use two variables for basic and detail information
+    
+    //variables for basic and detail information nad loading handling
     const [pokemon, setPokemon] = useState({});
     const [species, setSpecies] = useState({});
     const [moves, setMoves] = useState({});
     const [encounter, setEncounter] = useState({});
     const [view, setView] = useState('About');
+    const [loading, setLoading] = useState(true);
 
+    
     //Get the data from API
     useEffect(() => {
         axios.get(POKE_API)
         .then(resource => {
             setPokemon(resource.data);
+            setLoading(false);
             axios.get(`${POKE_SPECIES}${resource.data.id}`).then(resource => {setSpecies(resource.data)});
             axios.get(`${POKE_MOVES}${resource.data.id}`).then(resources => {setMoves(resources.data)});
             axios.get(`${POKE_ENCOUNTER}${resource.data.id}`).then(resource => {setEncounter(resource.data)});
@@ -37,7 +42,9 @@ function PokemonDetail(props) {
             setPokemon({id: null});
         })
     }, [POKE_NAME]);
-    //Informations
+
+
+    //Information variables
     const POKE_IMAGE = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${padToThree(pokemon.id)}.png`;
     const name = CapitalFirst(pokemon.name + "");
     const height = Math.round((pokemon.height * 0.328084 + 0.0001) * 100) / 100 + "ft (" + pokemon.height/100 + "m)";
@@ -75,8 +82,11 @@ function PokemonDetail(props) {
         return null;
     })
 
+
+    //Pick Color
     const {primaryColor, secondaryColor} = ColorPicker(color);
 
+    
     //To change the information details
     const viewHnadler = (e) => {
         setView(e.target.innerHTML);
@@ -84,6 +94,10 @@ function PokemonDetail(props) {
         marker.style.left = e.target.offsetLeft + "px";
         marker.style.width = e.target.offsetWidth + "px";
     }
+
+    //Return the JSX
+    if(loading){ return <Loading />}
+
     return (
         pokemon.id
         ? (<div className="container-fluid">
