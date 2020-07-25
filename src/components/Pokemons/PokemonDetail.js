@@ -40,7 +40,7 @@ function PokemonDetail(props) {
         })
         .catch(error => {
             setPokemon({id: null});
-            setPokemon(resource.data);
+            setLoading(false);
         })
     }, [POKE_NAME]);
 
